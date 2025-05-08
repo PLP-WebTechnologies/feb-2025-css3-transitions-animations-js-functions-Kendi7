@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 transistion js functions</title>
+    <style>
+        #Display-btn{
+            background-color: transparent;
+            transition: background-color 5s ease  ;
+        }
+        #Display-btn:hover{
+            background-color: aqua;
+        }
+        .box{
+            background-color: black;
+            width: 100px;
+            height: 100px;
+        }
+        .box.display{
+            animation: sliding 3s ease infinite;
+        }
+        @keyframes sliding {
+            0% {transform: rotate(0deg);}
+            100%{transform: rotate(360deg);}
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>User input</h1>
+    
+        <input type="text" id="username" placeholder="enter your name">
+        <button id="Display-btn">Get your name</button>
+        <p id="message"></p>
+        <div class="box" id="box"></div>
+        <button id="box-btn">Click to see a dancing box</button>
+
+
+    
+    <script>
+        const userName = document.getElementById("username");
+        const displayBtn = document.getElementById("Display-btn");
+        const message = document.getElementById("message");
+        const rotatingBox = document.getElementById("box-btn");
+        const box = document.getElementById("box");
+        displayBtn.addEventListener("click", function (){
+            const  name = userName.value
+            const input = localStorage.setItem("username",name)
+            const get = localStorage.getItem("username")
+            message.textContent = `Name: ${get}`
+
+        })
+        rotatingBox.addEventListener( "click", () =>{
+            
+            box.classList.toggle("display")
+        })
+
+    </script>
+</body>
+</html>
